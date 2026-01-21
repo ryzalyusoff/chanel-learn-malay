@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🇲🇾 Malay Core Basics — Pink Mini Course</title>
+
+  <!-- Separate files (you'll add these next) -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#app">Skip to content</a>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="brand" aria-label="App title">
+        <span class="brand__flag" aria-hidden="true">🇲🇾</span>
+        <div class="brand__text">
+          <div class="brand__title">Malay Core Basics</div>
+          <div class="brand__subtitle">Interactive mini course • quiz • games</div>
+        </div>
+      </div>
+
+      <nav class="topbar__nav" aria-label="Primary">
+        <button class="pill" type="button" data-action="open-home" aria-current="page">🏠 Home</button>
+        <button class="pill" type="button" data-action="open-lessons">📚 Lessons</button>
+        <button class="pill" type="button" data-action="open-quiz">🧠 Quiz</button>
+        <button class="pill" type="button" data-action="open-game">🎮 Game</button>
+        <button class="pill pill--ghost" type="button" data-action="open-settings">⚙️</button>
+      </nav>
+    </div>
+
+    <div class="progress" aria-label="Course progress">
+      <div class="progress__row">
+        <div class="progress__label">
+          <span aria-hidden="true">✨</span>
+          <span id="progressText">0% complete</span>
+        </div>
+        <div class="progress__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress__fill" id="progressFill" style="width:0%"></div>
+        </div>
+        <div class="progress__meta">
+          <span class="chip" id="streakChip" title="Streak">🔥 0</span>
+          <span class="chip" id="xpChip" title="XP">🍬 0 XP</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="app" tabindex="-1">
+    <!-- HOME -->
+    <section class="view view--active" data-view="home" aria-labelledby="homeTitle">
+      <div class="hero">
+        <div class="hero__left">
+          <h1 id="homeTitle" class="hero__title">Belajar Malay, one cute step at a time 💗</h1>
+          <p class="hero__desc">
+            Tap <b>Lessons</b> to learn bite‑size phrases, then try the <b>Quiz</b> and a fast <b>Game</b>.
+            Everything is beginner friendly — with emojis, examples, and quick practice.
+          </p>
+
+          <div class="hero__cta">
+            <button class="btn btn--primary" type="button" data-action="start-course">🌸 Start mini course</button>
+            <button class="btn" type="button" data-action="continue-course">✨ Continue</button>
+          </div>
+
+          <div class="hero__stats" role="list" aria-label="Today stats">
+            <div class="stat" role="listitem">
+              <div class="stat__k">🎯 Goal</div>
+              <div class="stat__v"><span id="goalText">5 minutes</span></div>
+            </div>
+            <div class="stat" role="listitem">
+              <div class="stat__k">📖 Learned</div>
+              <div class="stat__v"><span id="learnedText">0 / 18</span> topics</div>
+            </div>
+            <div class="stat" role="listitem">
+              <div class="stat__k">🧠 Quiz</div>
+              <div class="stat__v"><span id="quizBestText">Best: —</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__right" aria-hidden="true">
+          <!-- Cute inline “picture” as SVG data-uri (keeps everything offline) -->
+          <img class="hero__img" alt=""
+               src="data:image/svg+xml;utf8,
+               <svg xmlns='http://www.w3.org/2000/svg' width='520' height='520' viewBox='0 0 520 520'>
+                 <defs>
+                   <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+                     <stop offset='0' stop-color='%23ffd6f0'/>
+                     <stop offset='1' stop-color='%23ffe9f7'/>
+                   </linearGradient>
+                 </defs>
+                 <rect x='0' y='0' width='520' height='520' rx='64' fill='url(%23g)'/>
+                 <circle cx='180' cy='210' r='120' fill='%23ffffff' opacity='0.75'/>
+                 <circle cx='340' cy='290' r='140' fill='%23ffffff' opacity='0.55'/>
+                 <g font-family='Arial, sans-serif' text-anchor='middle'>
+                   <text x='260' y='210' font-size='44'>🇲🇾</text>
+                   <text x='260' y='270' font-size='28'>hello = hai</text>
+                   <text x='260' y='312' font-size='24'>thank you = terima kasih</text>
+                   <text x='260' y='362' font-size='22'>let's go = jom!</text>
+                 </g>
+               </svg>" />
+          <div class="hero__badge">🍓 pastel mode</div>
+        </div>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card">
+          <h2 class="card__title">📚 Learn</h2>
+          <p class="card__text">18 core topics with keywords + examples + mini drills.</p>
+          <button class="btn btn--soft" type="button" data-action="open-lessons">Open lessons →</button>
+        </article>
+        <article class="card">
+          <h2 class="card__title">🧠 Quiz</h2>
+          <p class="card__text">Multiple choice + typing. Collect XP for correct answers.</p>
+          <button class="btn btn--soft" type="button" data-action="open-quiz">Start quiz →</button>
+        </article>
+        <article class="card">
+          <h2 class="card__title">🎮 Game</h2>
+          <p class="card__text">Speed round: match Malay ↔ English before time runs out!</p>
+          <button class="btn btn--soft" type="button" data-action="open-game">Play game →</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- LESSONS -->
+    <section class="view" data-view="lessons" aria-labelledby="lessonsTitle">
+      <header class="viewhead">
+        <h2 id="lessonsTitle" class="viewhead__title">📚 Lessons</h2>
+        <p class="viewhead__desc">Pick a topic. Tap cards to flip. Then do a quick practice.</p>
+
+        <div class="viewhead__tools" aria-label="Lesson tools">
+          <input class="input" id="lessonSearch" type="search" placeholder="Search… e.g., sini, suka, tandas" />
+          <select class="select" id="lessonFilter" aria-label="Filter">
+            <option value="all">All topics</option>
+            <option value="starter">Starter</option>
+            <option value="daily">Daily</option>
+            <option value="travel">Travel</option>
+            <option value="connectors">Connectors</option>
+          </select>
+          <button class="btn btn--soft" type="button" data-action="random-lesson">🎲 Random</button>
+        </div>
+      </header>
+
+      <div class="lessonlist" id="lessonList" aria-label="Lesson list">
+        <!-- JS will inject lesson cards here -->
+        <noscript>
+          <p class="notice">This mini course needs JavaScript enabled to work.</p>
+        </noscript>
+      </div>
+
+      <section class="practice" aria-labelledby="practiceTitle">
+        <div class="practice__head">
+          <h3 id="practiceTitle" class="practice__title">🧪 Quick practice</h3>
+          <p class="practice__desc">After opening any lesson, practice appears here.</p>
+        </div>
+
+        <div class="practice__body" id="practiceArea">
+          <div class="empty">
+            <div class="empty__emoji" aria-hidden="true">🌷</div>
+            <div class="empty__title">Pick a lesson to start</div>
+            <div class="empty__text">We’ll generate a tiny drill (match / type / choose).</div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="view" data-view="quiz" aria-labelledby="quizTitle">
+      <header class="viewhead">
+        <h2 id="quizTitle" class="viewhead__title">🧠 Quiz</h2>
+        <p class="viewhead__desc">Test yourself. Get XP. Keep the streak 🔥</p>
+
+        <div class="viewhead__tools">
+          <label class="toggle">
+            <input type="checkbox" id="quizAudioToggle" />
+            <span>🔊 Sound effects</span>
+          </label>
+
+          <select class="select" id="quizMode" aria-label="Quiz mode">
+            <option value="mixed">Mixed</option>
+            <option value="en-to-ms">English → Malay</option>
+            <option value="ms-to-en">Malay → English</option>
+            <option value="typing">Typing</option>
+          </select>
+
+          <button class="btn btn--primary" type="button" data-action="start-quiz">Start quiz</button>
+        </div>
+      </header>
+
+      <div class="quiz" id="quizArea" aria-live="polite">
+        <!-- JS will render the quiz here -->
+      </div>
+    </section>
+
+    <!-- GAME -->
+    <section class="view" data-view="game" aria-labelledby="gameTitle">
+      <header class="viewhead">
+        <h2 id="gameTitle" class="viewhead__title">🎮 Speed Match</h2>
+        <p class="viewhead__desc">Match the meaning fast. Beat your best time ⏱️</p>
+
+        <div class="viewhead__tools">
+          <select class="select" id="gameDifficulty" aria-label="Difficulty">
+            <option value="easy">Easy (10s)</option>
+            <option value="normal" selected>Normal (7s)</option>
+            <option value="hard">Hard (5s)</option>
+          </select>
+          <button class="btn btn--primary" type="button" data-action="start-game">Play</button>
+          <button class="btn" type="button" data-action="stop-game">Stop</button>
+        </div>
+      </header>
+
+      <div class="game" id="gameArea" aria-live="polite">
+        <!-- JS will render the game here -->
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="view" data-view="settings" aria-labelledby="settingsTitle">
+      <header class="viewhead">
+        <h2 id="settingsTitle" class="viewhead__title">⚙️ Settings</h2>
+        <p class="viewhead__desc">Your progress is saved locally in this browser.</p>
+      </header>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <h3 class="card__title">🎀 Theme</h3>
+          <p class="card__text">Pastel pink UI (we’ll style this in <code>styles.css</code>).</p>
+          <button class="btn btn--soft" type="button" data-action="toggle-sparkles">✨ Toggle sparkles</button>
+        </article>
+
+        <article class="card">
+          <h3 class="card__title">🧹 Reset</h3>
+          <p class="card__text">Clear XP, progress, and streak.</p>
+          <button class="btn btn--danger" type="button" data-action="reset-progress">Reset progress</button>
+        </article>
+      </div>
+
+      <article class="card card--wide">
+        <h3 class="card__title">ℹ️ Tips</h3>
+        <ul class="list">
+          <li>Tap a lesson card to flip between Malay ↔ English.</li>
+          <li>Say it out loud (even softly): your brain learns faster 🧠✨</li>
+          <li>Use “tak” for casual “not”, “tidak” for more formal.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer class="bottombar" aria-label="Bottom actions">
+    <button class="bottombar__btn" type="button" data-action="prev">⬅️</button>
+    <button class="bottombar__btn bottombar__btn--wide" type="button" data-action="quick-practice">
+      💞 Quick practice
+    </button>
+    <button class="bottombar__btn" type="button" data-action="next">➡️</button>
+  </footer>
+
+  <!-- Templates (hidden) -->
+  <template id="tplLessonCard">
+    <article class="lessoncard" tabindex="0" role="button" aria-pressed="false">
+      <div class="lessoncard__top">
+        <div class="lessoncard__emoji" aria-hidden="true">💗</div>
+        <div class="lessoncard__meta">
+          <div class="lessoncard__title">Topic</div>
+          <div class="lessoncard__tags">
+            <span class="tag">starter</span>
+          </div>
+        </div>
+        <div class="lessoncard__status" aria-hidden="true">⬜️</div>
+      </div>
+
+      <div class="lessoncard__body">
+        <div class="flip">
+          <div class="flip__side flip__side--front">
+            <div class="kv">
+              <div class="kv__k">🔑 Key words</div>
+              <dl class="kv__list">
+                <div class="kv__row"><dt>word</dt><dd>meaning</dd></div>
+              </dl>
+            </div>
+            <div class="ex">
+              <div class="ex__k">💬 Examples</div>
+              <ul class="ex__list">
+                <li>Example</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flip__side flip__side--back">
+            <div class="kv">
+              <div class="kv__k">🧩 Practice hint</div>
+              <p class="kv__hint">Try saying the Malay sentence 3x.</p>
+            </div>
+            <div class="mini">
+              <div class="mini__k">✨ Quick drill</div>
+              <p class="mini__text">We’ll generate a mini question for this topic.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lessoncard__footer">
+        <button class="mini-btn" type="button" data-action="open-practice">🧪 Practice</button>
+        <button class="mini-btn" type="button" data-action="mark-done">✅ Mark done</button>
+      </div>
+    </article>
+  </template>
+
+  <template id="tplQuizCard">
+    <div class="qcard">
+      <div class="qcard__top">
+        <div class="qcard__badge">Question <span data-q="n">1</span> / <span data-q="t">10</span></div>
+        <div class="qcard__timer" aria-label="Timer" hidden>
+          ⏳ <span data-q="time">—</span>
+        </div>
+      </div>
+
+      <h3 class="qcard__q" data-q="prompt">Prompt</h3>
+
+      <div class="qcard__answers" data-q="answers"></div>
+
+      <div class="qcard__typing" data-q="typing" hidden>
+        <label class="sr-only" for="typingInput">Type your answer</label>
+        <input id="typingInput" class="input input--big" type="text" autocomplete="off" placeholder="Type here…" />
+        <button class="btn btn--primary" type="button" data-action="submit-typing">Submit</button>
+      </div>
+
+      <div class="qcard__footer">
+        <div class="qcard__feedback" data-q="feedback" aria-live="polite"></div>
+        <div class="qcard__actions">
+          <button class="btn" type="button" data-action="skip">Skip</button>
+          <button class="btn btn--soft" type="button" data-action="next-q">Next →</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="tplGame">
+    <div class="gwrap">
+      <div class="ghead">
+        <div class="chip">⏱️ <span data-g="time">7</span>s</div>
+        <div class="chip">⭐ <span data-g="score">0</span></div>
+        <div class="chip">🏆 Best: <span data-g="best">0</span></div>
+      </div>
+
+      <div class="gprompt">
+        <div class="gprompt__ms" data-g="ms">sini</div>
+        <div class="gprompt__sub">Pick the correct meaning 💖</div>
+      </div>
+
+      <div class="ganswers" data-g="answers"></div>
+
+      <div class="gfoot">
+        <button class="btn btn--soft" type="button" data-action="game-restart">🔁 Restart</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="data.js" defer></script>
+  <script src="storage.js" defer></script>
+  <script src="ui.js" defer></script>
+  <script src="quiz.js" defer></script>
+  <script src="game.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
